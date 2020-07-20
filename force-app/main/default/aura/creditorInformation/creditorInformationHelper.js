@@ -59,7 +59,9 @@
         myData.push(ts);
         component.set("v.data", myData);
         component.set('v.showModalAddTradeline', false);
-        this.showSuccessToast('Successfully added the Tradeline.');      
+        this.showSuccessToast('Successfully added the Tradeline.'); 
+        var targetCmp = component.find('addTradeline');
+        targetCmp.set("v.body", "");       
     },
     showSuccessToast : function(messageToShow) {
         var toastEvent = $A.get("e.force:showToast");
