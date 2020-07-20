@@ -1,0 +1,17 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	<aura:attribute name="newTradeline" type="Map" default="{ creditorName: '', firstName : '',lastName : '',minPaymentPercentage : '',balance : ''  }"/>
+    <aura:registerEvent name="addTradeline" type="c:saveTradelineEvent"/>
+    <aura:registerEvent name="cancelAddTradeline" type="c:cancelAddTradelineEvent"/>
+	<div class="slds-is-relative slds-theme_default">
+         
+                <lightning:input  aura:id="field" label="Creditor Name" type="text" value="{!v.newTradeline.creditorName}" required="true"/>
+                <lightning:input  aura:id="field" label="First Name" type="text" value="{!v.newTradeline.firstName}" required="true"/>
+                <lightning:input  aura:id="field" label="Last Name" type="text" value="{!v.newTradeline.lastName}" required="true"/>
+                <lightning:input  aura:id="field" label="Min Pay%" type="number" value="{!v.newTradeline.minPaymentPercentage}" required="true"/>
+                <lightning:input  aura:id="field" label="Balance" type="number" value="{!v.newTradeline.balance}" required="true"/>
+                <div class="slds-p-top_small slds-p-bottom_small">
+                <lightning:button variant="neutral" label="Cancel" onclick="{!c.handleAddTradelineCancel}" />
+                <lightning:button label="Save" variant="brand" onclick="{!c.handleSaveTradeline}"/>
+                </div>
+    </div>
+</aura:component>
