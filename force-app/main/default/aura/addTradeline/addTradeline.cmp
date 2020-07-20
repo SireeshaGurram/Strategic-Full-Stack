@@ -7,8 +7,8 @@
                 <lightning:input  aura:id="field" label="Creditor Name" type="text" value="{!v.newTradeline.creditorName}" required="true"/>
                 <lightning:input  aura:id="field" label="First Name" type="text" value="{!v.newTradeline.firstName}" required="true"/>
                 <lightning:input  aura:id="field" label="Last Name" type="text" value="{!v.newTradeline.lastName}" required="true"/>
-                <lightning:input  aura:id="field" label="Min Pay%" type="number" value="{!v.newTradeline.minPaymentPercentage}" required="true"/>
-                <lightning:input  aura:id="field" label="Balance" type="number" value="{!v.newTradeline.balance}" required="true"/>
+                <lightning:input  aura:id="field" label="Min Pay%" step=".01" formatter="percent" type="number" value="{!v.newTradeline.minPaymentPercentage}" required="true"/>
+                <lightning:input  aura:id="field" label="Balance" step=".01"  formatter="currency" type="number" value="{!v.newTradeline.balance}" required="true"/>
                 <div class="slds-p-top_small slds-p-bottom_small">
                 <lightning:button variant="neutral" label="Cancel" onclick="{!c.handleAddTradelineCancel}" />
                 <lightning:button label="Save" variant="brand" onclick="{!c.handleSaveTradeline}"/>

@@ -19,7 +19,7 @@
             }
             else{
                 if (component.isValid() && state === 'ERROR') {
-                    this.toastError(response.getError());
+                    this.showErrorToast(response.getError());
                 }
             }
         });
@@ -31,11 +31,7 @@
         for(var i in selectedRows){
             total = (total *100 + selectedRows[i].balance * 100)/100;
         }
-        if(selectedRows.length > 0 ){
-            component.set('v.disableButton', false);
-        }else{
-            component.set('v.disableButton', true);
-        }
+        (selectedRows.length > 0) ? component.set('v.disableButton', false) :component.set('v.disableButton', true);
         component.set('v.totalDebt', total);
         component.set('v.selectedRowsCount', selectedRows.length);
     },
@@ -52,9 +48,10 @@
             }
         }
         selectedRows.splice(1,selectedRows.length);
-        component.set("v.data",myData);
-        component.set("v.selectedRows",selectedRows);
-        component.set('v.disableButton', true);
+        component.set("v.data",myData); // reset the data
+        component.set("v.selectedRows",selectedRows); // reset the selectedrows
+        component.set('v.disableButton', true); // disable the remove button
+        this.showSuccessToast('Successfully removed the selected Tradeline(s).');
     },
     handleAddTradeline: function(component, event, helper) {
         var ts = event.getParam("newTradeline");
@@ -62,5 +59,22 @@
         myData.push(ts);
         component.set("v.data", myData);
         component.set('v.showModalAddTradeline', false);
+        this.showSuccessToast('Successfully added the Tradeline.');      
+    },
+    showSuccessToast : function(messageToShow) {
+        var toastEvent = $A.get("e.force:showToast");
+        toastEvent.setParams({
+           message: messageToShow,
+            type : 'Success'
+        });
+        toastEvent.fire();
+    },
+    showErrorToast : function(messageToShow) {
+        var toastEvent = $A.get("e.force:showToast");
+        toastEvent.setParams({
+           message: messageToShow,
+            type : 'Error'
+        });
+        toastEvent.fire();
     }
 });

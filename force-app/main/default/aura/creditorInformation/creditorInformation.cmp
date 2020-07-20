@@ -37,9 +37,9 @@
                 <div class="slds-col slds-size_2-of-6">Checked Row Count: {! v.selectedRowsCount }</div>    
             </div>       
     </div>
-    <c:customModal title="Add Tradeline" isActive="{!v.showModalAddTradeline}">
+    <c:customModal aura:id="customModal" title="Add Tradeline" isActive="{!v.showModalAddTradeline}">
         <!-- Content of the modal window -->
-        <c:addTradeline />       
+        <div aura:id="addTradeline" />      
     </c:customModal>
     
 </aura:component>
